@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>保研面试准备 · 问题集</title>
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --primary-bg: #eff6ff;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --success-bg: #d1fae5;
+  --warning: #f59e0b;
+  --warning-bg: #fef3c7;
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6;
+  min-height: 100vh;
+}
+/* Layout */
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+.header {
+  background: var(--card); border-bottom: 1px solid var(--border);
+  padding: 16px 24px; position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.header h1 { font-size: 20px; font-weight: 700; }
+.header h1 span { color: var(--primary); }
+.header-stats { display: flex; gap: 20px; font-size: 13px; color: var(--text-secondary); }
+.header-stats strong { color: var(--text); font-size: 15px; }
+.container { display: flex; flex: 1; }
+/* Sidebar */
+.sidebar {
+  width: 260px; background: var(--card); border-right: 1px solid var(--border);
+  padding: 20px; flex-shrink: 0; overflow-y: auto; max-height: calc(100vh - 72px);
+  position: sticky; top: 72px;
+}
+.sidebar-section { margin-bottom: 24px; }
+.sidebar-section h3 {
+  font-size: 12px; text-transform: uppercase; color: var(--text-muted);
+  letter-spacing: 0.5px; margin-bottom: 10px; font-weight: 600;
+}
+.sidebar-btn {
+  width: 100%; padding: 10px 16px; border: none; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; gap: 8px; justify-content: center;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+.btn-outline:hover { background: var(--primary-light); }
+/* Search */
+.search-box { position: relative; }
+.search-box input {
+  width: 100%; padding: 9px 12px 9px 34px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 14px; outline: none;
+  transition: border-color 0.2s; background: var(--bg);
+}
+.search-box input:focus { border-color: var(--primary); }
+.search-box .icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 16px; }
+/* Category tree */
+.category-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 12px; border-radius: var(--radius-sm); cursor: pointer;
+  font-size: 14px; transition: all 0.15s; margin-bottom: 2px;
+}
+.category-item:hover { background: var(--primary-light); }
+.category-item.active { background: var(--primary); color: #fff; font-weight: 600; }
+.category-item .count { font-size: 12px; background: var(--border); padding: 1px 8px; border-radius: 10px; color: var(--text-secondary); }
+.category-item.active .count { background: rgba(255,255,255,0.2); color: #fff; }
+.subcategory-list { padding-left: 16px; margin: 2px 0 6px; display: none; }
+.subcategory-list.open { display: block; }
+.subcategory-item {
+  padding: 5px 12px; font-size: 13px; border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.15s; margin-bottom: 1px;
+}
+.subcategory-item:hover { background: var(--primary-light); }
+.subcategory-item.active { background: var(--primary-light); color: var(--primary); font-weight: 600; }
+/* Status filter */
+.status-filters { display: flex; flex-direction: column; gap: 4px; }
+.status-item {
+  padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer;
+  font-size: 13px; transition: all 0.15s; display: flex; align-items: center; gap: 8px;
+}
+.status-item:hover { background: var(--primary-light); }
+.status-item.active { background: var(--primary-light); font-weight: 600; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+/* Main */
+.main { flex: 1; padding: 24px; min-width: 0; }
+.main-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.main-header h2 { font-size: 18px; font-weight: 600; }
+.main-header .subtitle { font-size: 13px; color: var(--text-secondary); }
+/* Grid */
+.question-grid { display: flex; flex-direction: column; gap: 12px; }
+.question-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 20px;
+  transition: all 0.2s; cursor: pointer;
+}
+.question-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+.question-card-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px; margin-bottom: 8px;
+}
+.question-title {
+  font-size: 15px; font-weight: 600; flex: 1; line-height: 1.5;
+}
+.question-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.badge {
+  font-size: 11px; padding: 2px 10px; border-radius: 10px;
+  font-weight: 500; white-space: nowrap;
+}
+.badge-category { background: var(--primary-light); color: var(--primary); }
+.badge-subcategory { background: #f1f5f9; color: var(--text-secondary); }
+.badge-status { font-weight: 600; }
+.badge-status.mastered { background: var(--success-bg); color: #065f46; }
+.badge-status.review { background: var(--warning-bg); color: #92400e; }
+.badge-status.none { background: var(--danger-bg); color: #991b1b; }
+.question-meta {
+  font-size: 12px; color: var(--text-muted);
+  display: flex; gap: 16px; align-items: center;
+}
+.question-answer {
+  margin-top: 12px; padding: 12px; background: #f8fafc;
+  border-radius: var(--radius-sm); font-size: 14px;
+  line-height: 1.7; display: none; white-space: pre-wrap;
+}
+.question-answer.open { display: block; }
+.question-card.open .question-answer { display: block; }
+.question-actions {
+  display: flex; gap: 4px; opacity: 0; transition: opacity 0.2s;
+}
+.question-card:hover .question-actions { opacity: 1; }
+.action-btn {
+  background: none; border: none; cursor: pointer; padding: 4px 6px;
+  border-radius: 4px; font-size: 14px; color: var(--text-muted);
+  transition: all 0.15s;
+}
+.action-btn:hover { background: var(--border); color: var(--text); }
+.action-btn.danger:hover { background: var(--danger-bg); color: var(--danger); }
+/* Subcategory grouping */
+.subcategory-section {
+  margin-bottom: 20px; background: var(--card);
+  border-radius: var(--radius); border: 1px solid var(--border);
+  overflow: hidden;
+}
+.subcategory-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 18px; cursor: pointer; user-select: none;
+  background: #f8fafc; border-bottom: 1px solid var(--border);
+  font-weight: 600; font-size: 15px; transition: background 0.15s;
+}
+.subcategory-header:hover { background: var(--primary-light); }
+.subcategory-header-title { display: flex; align-items: center; gap: 8px; }
+.subcategory-header-count {
+  font-size: 12px; font-weight: 500; color: var(--text-muted);
+  background: var(--border); padding: 2px 10px; border-radius: 10px;
+}
+.subcategory-body { display: none; padding: 8px 12px 12px; }
+.subcategory-section.expanded .subcategory-body { display: block; }
+.subcategory-section:not(.expanded) .subcategory-header { border-bottom: none; }
+.subcategory-body .question-card {
+  border: none; border-bottom: 1px solid var(--border);
+  border-radius: 0; margin-bottom: 0; padding: 12px 8px;
+}
+.subcategory-body .question-card:last-child { border-bottom: none; }
+.subcategory-body .question-card:hover { border-color: transparent; }
+/* Empty */
+.empty-state {
+  text-align: center; padding: 60px 20px; color: var(--text-muted);
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+.empty-state h3 { font-size: 16px; margin-bottom: 8px; color: var(--text-secondary); }
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 1000; display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--card); border-radius: var(--radius);
+  width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto;
+  padding: 28px; box-shadow: var(--shadow-md);
+}
+.modal h2 { font-size: 18px; margin-bottom: 20px; }
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;
+  color: var(--text-secondary);
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 9px 12px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 14px; outline: none;
+  font-family: inherit; transition: border-color 0.2s; background: var(--bg);
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--primary); background: #fff;
+}
+.form-group textarea { min-height: 120px; resize: vertical; }
+.form-row { display: flex; gap: 12px; }
+.form-row .form-group { flex: 1; }
+.modal-actions {
+  display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;
+}
+.modal-actions button {
+  padding: 9px 20px; border: none; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.modal-actions .btn-cancel { background: var(--border); color: var(--text-secondary); }
+.modal-actions .btn-cancel:hover { background: #cbd5e1; }
+.modal-actions .btn-save { background: var(--primary); color: #fff; }
+.modal-actions .btn-save:hover { background: var(--primary-dark); }
+/* Interview Mode */
+.interview-panel {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 999; display: none; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.interview-panel.open { display: flex; }
+.interview-box {
+  background: var(--card); border-radius: var(--radius);
+  width: 100%; max-width: 700px; max-height: 90vh; overflow-y: auto;
+  padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.interview-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px;
+}
+.interview-header h2 { font-size: 20px; }
+.interview-close {
+  background: none; border: none; font-size: 24px; cursor: pointer;
+  color: var(--text-muted); padding: 4px;
+}
+.interview-category-select { margin-bottom: 24px; }
+.interview-category-select select {
+  width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 15px; outline: none;
+  background: var(--bg); cursor: pointer;
+}
+.interview-question {
+  padding: 24px; background: var(--primary-bg);
+  border-radius: var(--radius); margin-bottom: 20px; min-height: 100px;
+}
+.interview-question .label { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
+.interview-question .text { font-size: 18px; font-weight: 600; line-height: 1.6; }
+.interview-answer {
+  margin-bottom: 20px; display: none;
+}
+.interview-answer.open { display: block; }
+.interview-answer .label { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
+.interview-answer .content {
+  padding: 16px; background: #f8fafc; border-radius: var(--radius-sm);
+  font-size: 14px; line-height: 1.7; white-space: pre-wrap;
+}
+.interview-actions {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.interview-actions button {
+  padding: 10px 20px; border: none; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.interview-actions .btn-reveal { background: var(--primary); color: #fff; }
+.interview-actions .btn-reveal:hover { background: var(--primary-dark); }
+.interview-actions .btn-mastered { background: var(--success-bg); color: #065f46; }
+.interview-actions .btn-mastered:hover { background: #a7f3d0; }
+.interview-actions .btn-review { background: var(--warning-bg); color: #92400e; }
+.interview-actions .btn-review:hover { background: #fde68a; }
+.interview-actions .btn-next { background: var(--border); color: var(--text); }
+.interview-actions .btn-next:hover { background: #cbd5e1; }
+.interview-progress { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; text-align: center; }
+/* Stats dashboard */
+.stats-dashboard {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px; margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--card); border-radius: var(--radius-sm);
+  padding: 14px 16px; border: 1px solid var(--border); text-align: center;
+}
+.stat-card .num { font-size: 24px; font-weight: 700; }
+.stat-card .label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.stat-card.primary .num { color: var(--primary); }
+.stat-card.success .num { color: var(--success); }
+.stat-card.warning .num { color: var(--warning); }
+.stat-card.danger .num { color: var(--danger); }
+/* Sort */
+.sort-bar { display: flex; gap: 8px; align-items: center; }
+.sort-bar select {
+  padding: 6px 10px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 13px; outline: none; background: var(--card); cursor: pointer;
+}
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+/* Responsive */
+@media (max-width: 768px) {
+  .container { flex-direction: column; }
+  .sidebar {
+    width: 100%; max-height: none; position: static;
+    border-right: none; border-bottom: 1px solid var(--border);
+    padding: 16px;
+  }
+  .main { padding: 16px; }
+  .header { padding: 12px 16px; }
+  .header h1 { font-size: 17px; }
+  .form-row { flex-direction: column; gap: 0; }
+  .question-card-header { flex-direction: column; gap: 8px; }
+  .question-actions { opacity: 1; }
+  .interview-box { padding: 20px; }
+  .interview-actions { flex-direction: column; }
+  .interview-actions button { width: 100%; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <h1>🎓 保研面试 · <span>问题集</span></h1>
+    <div class="header-stats">
+      <span>共 <strong id="totalCount">0</strong> 题</span>
+      <span>已掌握 <strong id="masteredCount" style="color:var(--success)">0</strong></span>
+      <span>待复习 <strong id="reviewCount" style="color:var(--warning)">0</strong></span>
+    </div>
+  </header>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <button class="sidebar-btn btn-primary" onclick="openAddModal()">＋ 添加问题</button>
+      </div>
+      <div class="sidebar-section">
+        <button class="sidebar-btn btn-outline" onclick="openInterviewPanel()">🎤 面试模式</button>
+      </div>
+      <div class="sidebar-section">
+        <h3>搜索</h3>
+        <div class="search-box">
+          <span class="icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="搜索问题..." oninput="handleSearch()">
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <h3>分类</h3>
+        <div class="category-item active" data-category="全部" onclick="filterByCategory('全部')">
+          <span>📋 全部问题</span>
+          <span class="count" id="catCount-全部">0</span>
+        </div>
+        <div id="categoryTree"></div>
+      </div>
+      <div class="sidebar-section">
+        <h3>掌握状态</h3>
+        <div class="status-filters">
+          <div class="status-item active" data-status="全部" onclick="filterByStatus('全部')">
+            <span class="status-dot" style="background:var(--text-muted)"></span> 全部
+          </div>
+          <div class="status-item" data-status="未掌握" onclick="filterByStatus('未掌握')">
+            <span class="status-dot" style="background:var(--danger)"></span> 未掌握
+          </div>
+          <div class="status-item" data-status="已熟悉" onclick="filterByStatus('已熟悉')">
+            <span class="status-dot" style="background:var(--success)"></span> 已熟悉
+          </div>
+          <div class="status-item" data-status="需复习" onclick="filterByStatus('需复习')">
+            <span class="status-dot" style="background:var(--warning)"></span> 需复习
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <h3>排序</h3>
+        <select id="sortSelect" onchange="renderQuestions()" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;outline:none;background:var(--bg);cursor:pointer;">
+          <option value="newest">最新添加</option>
+          <option value="oldest">最早添加</option>
+          <option value="updated">最近更新</option>
+          <option value="reviews">复习次数最多</option>
+        </select>
+      </div>
+      <div class="sidebar-section" style="border-top:1px solid var(--border);padding-top:16px;">
+        <h3>数据共享</h3>
+        <button class="sidebar-btn btn-outline" onclick="exportData()" style="font-size:12px;margin-bottom:6px;">📤 导出数据</button>
+        <button class="sidebar-btn btn-outline" onclick="document.getElementById('importInput').click()" style="font-size:12px;margin-bottom:6px;">📥 导入数据</button>
+        <input type="file" id="importInput" accept=".json" style="display:none" onchange="importData(event)">
+        <div style="font-size:11px;color:var(--text-muted);text-align:center;">导出 JSON 文件后分享给他人导入即可同步</div>
+      </div>
+      <div class="sidebar-section">
+        <button class="sidebar-btn btn-outline" onclick="seedSampleData()" style="font-size:12px;border-color:var(--text-muted);color:var(--text-muted);">📦 重置示例数据</button>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="stats-dashboard" id="statsDashboard"></div>
+      <div class="main-header">
+        <div>
+          <h2 id="currentViewTitle">全部问题</h2>
+          <span class="subtitle" id="currentViewSubtitle"></span>
+        </div>
+      </div>
+      <div class="question-grid" id="questionGrid"></div>
+    </main>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div class="modal-overlay" id="questionModal">
+  <div class="modal">
+    <h2 id="modalTitle">添加问题</h2>
+    <div class="form-group">
+      <label>问题 *</label>
+      <input type="text" id="qTitle" placeholder="输入面试问题...">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>分类 *</label>
+        <select id="qCategory" onchange="updateSubcategories()"></select>
+      </div>
+      <div class="form-group">
+        <label>子分类 *</label>
+        <input id="qSubcategory" list="subcategoryList" placeholder="选择或输入自定义科目...">
+        <datalist id="subcategoryList"></datalist>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">💡 可选择已有科目或输入自定义科目</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>掌握状态</label>
+        <select id="qStatus">
+          <option value="未掌握">❌ 未掌握</option>
+          <option value="已熟悉">✅ 已熟悉</option>
+          <option value="需复习">🔄 需复习</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>标签（逗号分隔）</label>
+        <input type="text" id="qTags" placeholder="如: 高频, 难点, 必考">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>答案 / 要点</label>
+      <textarea id="qAnswer" placeholder="写下你的回答要点..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">取消</button>
+      <button class="btn-save" onclick="saveQuestion()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- Interview Panel -->
+<div class="interview-panel" id="interviewPanel">
+  <div class="interview-box">
+    <div class="interview-header">
+      <h2>🎤 面试模拟</h2>
+      <button class="interview-close" onclick="closeInterviewPanel()">×</button>
+    </div>
+    <div class="interview-category-select">
+      <select id="interviewCategory" onchange="initInterviewQuestions()">
+        <option value="全部">全部类别</option>
+      </select>
+    </div>
+    <div id="interviewContent">
+      <div style="text-align:center;padding:40px 0;color:var(--text-muted);">
+        <div style="font-size:40px;margin-bottom:12px;">📝</div>
+        <p>选择分类后点击下方按钮开始</p>
+        <button class="sidebar-btn btn-primary" style="display:inline-flex;width:auto;margin-top:16px;" onclick="nextInterviewQuestion()">开始抽题</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ====== Constants ======
+const CATEGORIES = {
+  '专业知识': ['通信原理', '信号与系统', '数字信号处理', '移动通信/无线通信', '光纤通信', '计算机网络', '电磁场与电磁波', '信息论与编码', '通信电子线路', '嵌入式/单片机', '编程与算法', '其他'],
+  '个人问题': ['自我介绍', '科研经历', '项目经历', '择校动机', '未来规划', '其他'],
+  '英语问题': ['英语自我介绍', '专业英语', '日常问答', '其他'],
+  '综合面试': ['时事热点', '综合素质', '压力面试', '其他']
+};
+const STORAGE_KEY = 'baoyan_interview_questions';
+const STATUS_LIST = ['未掌握', '已熟悉', '需复习'];
+
+// ====== Seed Data ======
+function seedSampleData(silent) {
+  if (!silent && questions.length > 0) {
+    if (!confirm('当前已有 ' + questions.length + ' 个问题，加载示例数据会追加到现有数据中，是否继续？')) return;
+  }
+  const samples = [
+    // ===== 专业知识 - 通信原理 =====
+    {title:'数字通信系统的基本模型是什么？请画出框图并说明各部分的作用。',cat:'专业知识',sub:'通信原理',ans:'数字通信系统一般由信源、信源编码器、信道编码器、调制器、信道、解调器、信道译码器、信源译码器和信宿组成。\n\n各部分作用：\n1. 信源：产生原始信号\n2. 信源编码：将模拟信号数字化，压缩数据\n3. 信道编码：加入冗余信息，提高抗干扰能力\n4. 调制器：将数字信号映射到适合信道传输的波形\n5. 信道：信号传输的媒介\n6. 解调器：从接收波形中恢复数字信号\n7. 信道译码：纠错检错\n8. 信源译码：恢复原始信号',tags:'基础,必考'},
+    {title:'什么是香农公式？其物理意义是什么？对通信系统设计有什么指导意义？',cat:'专业知识',sub:'通信原理',ans:'香农公式：C = B·log₂(1 + S/N)\n其中C为信道容量(bps)，B为信道带宽(Hz)，S/N为信噪比。\n\n物理意义：在带宽B和信噪比S/N确定的情况下，信道无差错传输信息的最大速率受到理论极限C的限制。\n\n指导意义：\n1. 带宽和信噪比可以互换（增大带宽可降低对信噪比的要求）\n2. 当S/N→0时，C→0；当B→∞时，C→1.44·S/N₀（趋于有限值）\n3. 为通信系统的设计提供了理论上限',tags:'核心,高频'},
+    {title:'什么是码间串扰(ISI)？产生原因是什么？如何消除或减小？',cat:'专业知识',sub:'通信原理',ans:'码间串扰(ISI)是指前面码元对当前码元判决造成的干扰。\n\n产生原因：\n1. 信道的带宽有限，导致信号在时域上展宽\n2. 多径传播\n3. 传输特性不理想\n\n消除方法：\n1. 奈奎斯特第一准则：设计升余弦滚降滤波器等满足无ISI条件\n2. 自适应均衡器（如LMS算法，迫零均衡等）\n3. 部分响应系统（如双二进制、修正双二进制）',tags:'核心'},
+    {title:'模拟调制和数字调制的主要区别是什么？各有什么优缺点？',cat:'专业知识',sub:'通信原理',ans:'模拟调制：调制信号为模拟信号，如AM、FM、PM\n数字调制：调制信号为数字信号，如ASK、FSK、PSK、QAM\n\n区别：\n1. 模拟调制输出连续变化的波形；数字调制输出离散状态的波形\n2. 数字调制抗干扰能力强，便于中继再生\n3. 数字调制便于加密、存储、处理\n4. 数字调制占用带宽通常更大\n5. 模拟调制实现简单，频谱效率在特定场景下更高',tags:'基础'},
+    {title:'什么是匹配滤波器？它有什么特性？在数字通信中有什么应用？',cat:'专业知识',sub:'通信原理',ans:'匹配滤波器是在加性白噪声背景下，使输出信噪比在某一时刻达到最大的线性滤波器。\n\n特性：\n1. 匹配滤波器的冲激响应是输入信号的时间反转与时移：h(t)=s(T-t)\n2. 在t=T时刻输出信噪比最大\n3. 匹配滤波器输出信号在t=T时刻的值等于输入信号能量的平方根\n\n应用：\n1. 数字通信的最佳接收机（如相关接收机）\n2. 雷达信号检测\n3. 扩频通信中的解扩',tags:'重点'},
+    {title:'QPSK和QAM调制方式的区别与联系？为什么高阶QAM应用广泛？',cat:'专业知识',sub:'通信原理',ans:'QPSK是4PSK，用4个相位（0°,90°,180°,270°）表示2比特信息；\nQAM是幅度相位联合调制，同时改变载波的幅度和相位。\n\n联系：\n1. QPSK可以看作4QAM\n2. 两者都是数字调制技术\n\n区别：\n1. QPSK只有相位变化，QAM幅度相位都变\n2. QPSK包络恒定，QAM包络变化\n3. 高阶QAM（16QAM、64QAM等）频谱效率更高\n\n高阶QAM广泛应用的原因：在相同带宽下可以传输更多比特，频谱效率高',tags:'高频'},
+    {title:'什么是信道编码？常用的信道编码有哪些？请简述卷积码的基本原理。',cat:'专业知识',sub:'通信原理',ans:'信道编码是在信息序列中添加冗余信息，使系统具有检错或纠错能力的技术。\n\n常用信道编码：\n1. 线性分组码（如汉明码、BCH码、RS码）\n2. 卷积码\n3. Turbo码\n4. LDPC码\n5. Polar码（5G中使用）\n\n卷积码原理：卷积码的输出不仅与当前输入有关，还与之前输入的若干信息有关（即编码器有记忆）。通常用(n,k,m)表示，其中k为输入比特数，n为输出比特数，m为约束长度。使用Viterbi算法进行译码。',tags:'重点'},
+    {title:'请解释奈奎斯特第一准则（无码间串扰条件）。',cat:'专业知识',sub:'通信原理',ans:'奈奎斯特第一准则：若数字基带传输系统的总传输特性H(f)满足：\n∑_{n=-∞}^{∞} H(f + n/T) = 常数，对|f| ≤ 1/T\n其中T为码元周期，则系统在抽样点上无码间串扰。\n\n物理意义：将H(f)按1/T的间隔平移叠加后，在(-1/T, 1/T)内为常数。\n\n实际中常用的升余弦滚降滤波器就满足这一准则。\n\n极限情况：当滚降系数α=0时，系统具有最窄带宽1/(2T)，即奈奎斯特带宽，此时的频带利用率为2 Baud/Hz。',tags:'核心,必考'},
+    // ===== 专业知识 - 信号与系统 =====
+    {title:'什么是卷积？卷积的物理意义是什么？',cat:'专业知识',sub:'信号与系统',ans:'卷积定义为：(f*g)(t) = ∫_{-∞}^{∞} f(τ)g(t-τ)dτ\n\n物理意义：\n1. 卷积反映了系统对输入信号的"加权叠加"过程\n2. LTI系统的输出等于输入与系统冲激响应的卷积：y(t)=x(t)*h(t)\n3. 卷积运算体现了信号的"记忆效应"——当前输出是过去所有输入的综合结果\n4. 在频域上，卷积对应乘法：时域卷积↔频域乘积',tags:'基础,核心'},
+    {title:'傅里叶变换、拉普拉斯变换、Z变换之间有什么区别和联系？',cat:'专业知识',sub:'信号与系统',ans:'三者的联系：\n1. 都是将信号从时域变换到变换域进行分析的数学工具\n2. 拉普拉斯变换是傅里叶变换的推广（s=σ+jω）\n3. Z变换是拉普拉斯变换在离散域的对应（z=e^{sT}）\n\n区别：\n1. 傅里叶变换：用于分析连续周期/非周期信号，频率域分析\n2. 拉普拉斯变换：用于分析连续系统，可以分析稳定性，收敛域更广\n3. Z变换：用于离散信号和离散系统的分析\n\n应用场景：\n1. 傅里叶变换：频谱分析\n2. 拉普拉斯变换：系统稳定性分析、电路分析\n3. Z变换：数字滤波器设计、离散系统分析',tags:'核心,高频'},
+    {title:'什么是系统的因果性和稳定性？如何判断一个LTI系统是否因果和稳定？',cat:'专业知识',sub:'信号与系统',ans:'因果性：系统在时刻t的输出只取决于t及t之前的输入，与未来输入无关。\nLTI系统因果的充要条件：h(t)=0 (t<0)。\n\n稳定性（BIBO稳定）：对任何有界输入，输出也有界。\nLTI系统稳定的充要条件：∫_{-∞}^{∞}|h(t)|dt < ∞（冲激响应绝对可积）\n\n在系统函数H(s)或H(z)的收敛域中判断：\n1. 因果：收敛域在极点右侧（或圆外）\n2. 稳定：收敛域包含虚轴（或单位圆）\n3. 既因果又稳定：所有极点在左半平面（或单位圆内）',tags:'基础'},
+    {title:'请叙述奈奎斯特采样定理及其工程意义。',cat:'专业知识',sub:'信号与系统',ans:'奈奎斯特采样定理：要从采样信号中无失真地恢复原连续信号，采样频率fs必须大于等于信号最高频率fh的两倍，即fs ≥ 2fh。\n\n工程意义：\n1. 指导A/D转换器的选型：需要根据信号带宽确定采样率\n2. 采样前必须加抗混叠低通滤波器，滤除高于fs/2的频率成分\n3. 过采样技术可以降低对抗混叠滤波器的要求\n4. 是数字信号处理的基础',tags:'核心,必考'},
+    // ===== 专业知识 - 数字信号处理 =====
+    {title:'DFT和FFT的区别与联系是什么？FFT为什么能提高运算速度？',cat:'专业知识',sub:'数字信号处理',ans:'区别与联系：\n1. DFT是数字信号处理的理论基础，定义为X(k)=Σx(n)W_N^{nk}\n2. FFT是DFT的快速算法，不是一种新的变换\n3. FFT利用旋转因子的周期性和对称性，将长序列的DFT分解为短序列DFT的组合\n\nFFT提高运算速度的原因：\n1. 直接DFT的计算量为O(N²)次复数乘法\n2. 基2FFT（按时间/频率抽取）的计算量为O(N·log₂N)\n3. 当N=1024时，FFT比直接DFT快约200倍\n4. 利用旋转因子的周期性减少重复计算',tags:'核心,高频'},
+    {title:'FIR滤波器和IIR滤波器有什么区别？各有什么优缺点？',cat:'专业知识',sub:'数字信号处理',ans:'区别：\n1. FIR：有限冲激响应，无反馈结构；IIR：无限冲激响应，有反馈结构\n2. FIR相位特性为严格线性（对称结构），IIR相位非线性\n3. FIR系统稳定，IIR可能不稳定\n4. FIR需要更高阶数达到相同幅频指标\n\n优缺点：\nFIR：优点是严格线性相位、稳定、易于实现；缺点是相同指标下阶数高、延迟大\nIIR：优点是阶数低、运算量小、延迟小；缺点是相位非线性、可能不稳定',tags:'核心'},
+    {title:'什么是吉布斯现象？如何抑制？',cat:'专业知识',sub:'数字信号处理',ans:'吉布斯现象：在用有限项傅里叶级数逼近具有间断点的周期信号时，间断点附近会出现过冲和振荡现象。随着项数增加，过冲峰值不消失而趋近于8.95%。\n\n在数字滤波器设计中的体现：\n用矩形窗截断理想滤波器冲激响应时，通带和阻带会出现波动（即吉布斯现象）\n\n抑制方法：\n1. 使用平滑的窗函数（如汉宁窗、海明窗、布莱克曼窗、凯泽窗等）\n2. 窗函数在主瓣宽度和旁瓣衰减之间取折中\n3. 增大窗长度可减小过渡带宽度，但不能消除过冲',tags:'重点'},
+    {title:'窗函数在数字滤波器设计中的作用是什么？常用的窗函数有哪些？',cat:'专业知识',sub:'数字信号处理',ans:'作用：窗函数用于截断理想滤波器的无限长冲激响应，得到有限长的FIR滤波器系数。窗函数直接影响滤波器的过渡带宽度和阻带衰减。\n\n常用窗函数：\n1. 矩形窗：主瓣窄（过渡带窄），但旁瓣高（阻带衰减差，-13dB）\n2. 汉宁窗（Hanning）：主瓣中，旁瓣-31dB\n3. 海明窗（Hamming）：主瓣中，旁瓣-41dB\n4. 布莱克曼窗（Blackman）：主瓣宽，旁瓣-57dB\n5. 凯泽窗（Kaiser）：可通过β参数灵活调节主瓣和旁瓣的折中',tags:'重点'},
+    // ===== 专业知识 - 移动通信/无线通信 =====
+    {title:'请简述移动通信从1G到5G的发展历程及各代的主要技术特点。',cat:'专业知识',sub:'移动通信/无线通信',ans:'1G（1980s）：模拟蜂窝通信，FDMA，仅语音，如AMPS/TACS\n2G（1990s）：数字蜂窝通信，TDMA/CDMA，语音+短信，如GSM、IS-95\n3G（2000s）：宽带数字通信，WCDMA/CDMA2000/TD-SCDMA，支持低速数据\n4G（2010s）：LTE/LTE-Advanced，OFDMA+MIMO，全IP网络，高速数据\n5G（2020s）：三大场景eMBB/uRLLC/mMTC，关键技术：毫米波、大规模MIMO、波束赋形、网络切片、边缘计算',tags:'必考,高频'},
+    {title:'OFDM的基本原理是什么？它有哪些优缺点？',cat:'专业知识',sub:'移动通信/无线通信',ans:'OFDM（正交频分复用）原理：将高速数据流串并转换到多个正交的子载波上并行传输。子载波间满足正交性（子载波间隔Δf=1/T），频谱重叠但不干扰。\n\n优点：\n1. 频谱效率高（子载波重叠）\n2. 抗多径衰落能力强（加CP循环前缀）\n3. 通过IFFT/FFT高效实现\n4. 灵活的资源调度\n\n缺点：\n1. 峰均比(PAPR)高，对功放线性度要求高\n2. 对频率偏差敏感\n3. 循环前缀引入冗余',tags:'核心,高频'},
+    {title:'什么是MIMO技术？它的基本原理和优势是什么？',cat:'专业知识',sub:'移动通信/无线通信',ans:'MIMO（多输入多输出）：在发射端和接收端使用多根天线进行通信的技术。\n\n基本原理：利用空间维度，在同一时频资源上传输多路数据流。\n\n三种增益：\n1. 空间分集（Spatial Diversity）：发射分集/接收分集，提高可靠性\n2. 空间复用（Spatial Multiplexing）：同时传输多路数据流，提高速率\n3. 波束赋形（Beamforming）：集中能量到特定方向，提高信噪比\n\n优势：在不增加带宽和发射功率的情况下，显著提高系统容量和可靠性',tags:'核心'},
+    {title:'什么是多径效应？它对无线通信有什么影响？如何对抗？',cat:'专业知识',sub:'移动通信/无线通信',ans:'多径效应：发射信号经过多条不同路径到达接收端，各路径时延不同，导致接收信号为多径信号的叠加。\n\n影响：\n1. 频率选择性衰落（频域）\n2. 码间串扰ISI（时域）\n3. 信号幅度服从瑞利/莱斯分布\n\n对抗技术：\n1. OFDM+循环前缀：消除ISI\n2. Rake接收机：利用多径分集\n3. 均衡器：消除码间串扰\n4. MIMO：利用多径而非对抗多径',tags:'重点'},
+    {title:'5G的三大应用场景和关键技术有哪些？',cat:'专业知识',sub:'移动通信/无线通信',ans:'三大场景：\n1. eMBB（增强移动宽带）：高速率，如4K/8K视频、VR/AR\n2. uRLLC（超可靠低时延）：低时延高可靠，如自动驾驶、工业控制\n3. mMTC（大规模机器通信）：海量连接，如物联网\n\n关键技术：\n1. 毫米波通信（30-300GHz）\n2. 大规模MIMO（Massive MIMO）\n3. 波束赋形（Beamforming）\n4. 网络切片（Network Slicing）\n5. 边缘计算（MEC）\n6. 超密集组网（UDN）\n7. 灵活 Numerology（可变的子载波间隔）',tags:'必考,高频'},
+    // ===== 专业知识 - 光纤通信 =====
+    {title:'光纤通信的基本原理是什么？为什么光纤通信容量大？',cat:'专业知识',sub:'光纤通信',ans:'基本原理：利用光的全反射原理，将携带信息的光信号在光纤芯中传输。信号在发送端通过光调制将电信号转换为光信号，在接收端通过光探测器将光信号还原为电信号。\n\n容量大的原因：\n1. 光载波频率极高（约200THz），可用带宽极大\n2. 波分复用(WDM)技术可以在单根光纤中传输多路不同波长的光信号\n3. 低损耗窗口（1550nm处损耗约0.2dB/km）支持长距离传输\n4. 光纤体积小、重量轻',tags:'基础'},
+    {title:'什么是色散？光纤中的色散有哪些类型？对通信有什么影响？',cat:'专业知识',sub:'光纤通信',ans:'色散：光纤中不同频率成分或不同模式成分的传播速度不同，导致光脉冲在传输过程中展宽的现象。\n\n类型：\n1. 模式色散（多模光纤中不同模式传播速度不同）\n2. 材料色散（光纤材料的折射率随波长变化）\n3. 波导色散（波导结构引起的传播常数随波长变化）\n4. 偏振模色散(PMD)\n\n影响：脉冲展宽→码间串扰→限制传输速率和距离\n\n补偿方法：色散补偿光纤(DCF)、色散管理',tags:'重点'},
+    // ===== 专业知识 - 计算机网络 =====
+    {title:'OSI七层模型和TCP/IP四层模型分别是什么？各层的主要功能是什么？',cat:'专业知识',sub:'计算机网络',ans:'OSI七层（从下到上）：\n1. 物理层：比特流传输，接口和介质\n2. 数据链路层：帧封装，差错控制，MAC地址\n3. 网络层：路由选择，IP地址，分组转发\n4. 传输层：端到端通信，TCP/UDP\n5. 会话层：会话管理\n6. 表示层：数据格式转换，加密解密\n7. 应用层：应用协议（HTTP、FTP、SMTP等）\n\nTCP/IP四层：\n1. 网络接口层（对应OSI物理+链路）\n2. 网际层（对应OSI网络层，IP协议）\n3. 传输层（对应OSI传输层，TCP/UDP）\n4. 应用层（对应OSI会话+表示+应用）',tags:'基础'},
+    {title:'TCP和UDP的区别是什么？TCP如何保证可靠传输？',cat:'专业知识',sub:'计算机网络',ans:'区别：\n1. TCP面向连接（三次握手），UDP无连接\n2. TCP可靠传输，UDP不可靠\n3. TCP有序，UDP无序\n4. TCP有流量控制和拥塞控制，UDP没有\n5. TCP头部开销大（20字节），UDP头部小（8字节）\n6. TCP适用于文件传输、网页浏览；UDP适用于视频流、DNS查询\n\nTCP可靠传输机制：\n1. 序列号和确认应答(ACK)\n2. 超时重传\n3. 滑动窗口（流量控制）\n4. 拥塞控制（慢启动、拥塞避免、快速重传、快速恢复）\n5. 校验和',tags:'经典,高频'},
+    {title:'请简述TCP三次握手和四次挥手的过程。',cat:'专业知识',sub:'计算机网络',ans:'三次握手（建立连接）：\n1. 客户端发送SYN（seq=x）\n2. 服务器回复SYN+ACK（seq=y, ack=x+1）\n3. 客户端发送ACK（seq=x+1, ack=y+1）\n\n四次挥手（断开连接）：\n1. 客户端发送FIN（seq=u）\n2. 服务器回复ACK（ack=u+1）→ 半关闭状态\n3. 服务器发送FIN（seq=v）\n4. 客户端回复ACK（ack=v+1）→ 等待2MSL后关闭\n\n注意：挥手需要四次是因为TCP半关闭特性，服务器可能还有数据要发送',tags:'经典,必考'},
+    // ===== 专业知识 - 电磁场与电磁波 =====
+    {title:'请写出麦克斯韦方程组的积分形式和微分形式，并说明其物理意义。',cat:'专业知识',sub:'电磁场与电磁波',ans:'积分形式：\n∮H·dl = ∫(J+∂D/∂t)·dS  （安培环路定律）\n∮E·dl = -∫(∂B/∂t)·dS  （法拉第电磁感应定律）\n∮D·dS = ∫ρ·dV            （高斯定律）\n∮B·dS = 0                  （磁通连续性定律）\n\n微分形式：\n∇×H = J + ∂D/∂t\n∇×E = -∂B/∂t\n∇·D = ρ\n∇·B = 0\n\n物理意义：\n1. 变化的电场产生磁场\n2. 变化的磁场产生电场\n3. 电荷产生电场\n4. 磁单极子不存在',tags:'基础'},
+    {title:'什么是均匀平面波？TEM波、TE波、TM波有什么区别？',cat:'专业知识',sub:'电磁场与电磁波',ans:'均匀平面波：等相位面为平面，且在等相位面上电场和磁场的幅度、方向处处相同的电磁波。\n\nTEM波（横电磁波）：E和H都垂直于传播方向，无传播方向上的场分量。如同轴线中的主模。\n\nTE波（横电波）：电场垂直于传播方向（Ez=0），磁场有传播方向分量（Hz≠0）。如矩形波导中的TE₁₀模。\n\nTM波（横磁波）：磁场垂直于传播方向（Hz=0），电场有传播方向分量（Ez≠0）。如矩形波导中的TM₁₁模。\n\n区别：有无传播方向上的电场/磁场分量。TEM在自由空间、同轴线中传输；TE和TM在波导中传输。',tags:'重点'},
+    // ===== 专业知识 - 信息论与编码 =====
+    {title:'什么是信息熵？什么是互信息？它们有什么物理意义？',cat:'专业知识',sub:'信息论与编码',ans:'信息熵：H(X) = -Σp(x)·log₂p(x)\n表示信源X的平均不确定度，也是表示一个随机变量所需平均比特数。熵越大，不确定性越大，信息量越大。\n\n互信息：I(X;Y) = H(X) - H(X|Y)\n表示随机变量X和Y之间共享的信息量，即接收到Y后关于X的不确定性的减少量。\n\n物理意义：\n1. 熵衡量信源的信息含量\n2. 互信息衡量信道传输的信息量\n3. 信道容量C = max I(X;Y)',tags:'重点'},
+    {title:'香农三大定理是什么？分别阐述了什么问题？',cat:'专业知识',sub:'信息论与编码',ans:'第一定理（可变长无失真信源编码定理）：对离散无记忆信源进行无失真编码时，码字平均长度不能小于信源熵。即熵是数据压缩的理论极限。\n\n第二定理（有噪信道编码定理）：只要信息传输速率R小于信道容量C，就存在一种编码使得错误概率任意小。反之，若R>C，则不可能实现可靠通信。\n\n第三定理（保真度准则下的信源编码定理/率失真理论）：在给定的失真度D下，存在一个率失真函数R(D)，表示在该失真度下所需的最小传输速率。',tags:'核心'},
+    // ===== 专业知识 - 通信电子线路 =====
+    {title:'反馈振荡器的基本原理是什么？起振条件和平衡条件分别是什么？',cat:'专业知识',sub:'通信电子线路',ans:'基本原理：利用正反馈将放大器输出的部分信号反馈到输入端，当满足一定条件时，即使没有输入信号，电路也能产生持续的振荡输出。\n\n起振条件：|AF| > 1（环路增益大于1），且相位φ_A + φ_F = 2nπ（正反馈）\n\n平衡条件：|AF| = 1（环路增益等于1），且相位φ_A + φ_F = 2nπ\n\n稳定条件：振幅稳定和相位稳定\n\n常用振荡器：LC振荡器（考毕兹、哈特莱）、晶体振荡器、RC振荡器',tags:'重点'},
+    // ===== 专业知识 - 编程与算法 =====
+    {title:'什么是时间复杂度和空间复杂度？请比较常见排序算法的时间复杂度。',cat:'专业知识',sub:'编程与算法',ans:'时间复杂度：算法执行时间随输入规模增长的变化率，用大O表示法描述。\n空间复杂度：算法执行过程中所需的额外存储空间随输入规模的变化率。\n\n常见排序算法的时间复杂度：\n1. 冒泡排序：O(n²)平均，O(n)最好\n2. 选择排序：O(n²)平均\n3. 插入排序：O(n²)平均，O(n)最好\n4. 希尔排序：O(n^1.3)平均\n5. 归并排序：O(n·log₂n)平均\n6. 快速排序：O(n·log₂n)平均，O(n²)最差\n7. 堆排序：O(n·log₂n)\n8. 计数排序/桶排序：O(n+k)',tags:'基础'},
+    {title:'什么是链表？数组和链表的区别是什么？',cat:'专业知识',sub:'编程与算法',ans:'链表是由节点组成的线性数据结构，每个节点包含数据和指向下一个节点的指针。\n\n数组和链表的区别：\n1. 内存分配：数组连续，链表分散\n2. 访问方式：数组随机访问O(1)，链表顺序访问O(n)\n3. 插入/删除：数组O(n)（需移动元素），链表O(1)（已知位置）\n4. 大小：数组固定（静态）或动态扩容，链表动态\n5. 额外空间：数组不需要额外空间存储指针，链表需要\n6. 缓存友好性：数组更好（空间局部性原理）',tags:'基础'},
+    // ===== 个人问题 =====
+    {title:'请做一个简短的自我介绍（1-2分钟）。',cat:'个人问题',sub:'自我介绍',ans:'建议包含以下结构：\n1. 基本信息：姓名、学校、专业\n2. 学业情况：成绩排名、核心课程掌握情况\n3. 科研/项目经历：做了什么、角色、成果\n4. 竞赛/获奖：与专业相关的竞赛\n5. 兴趣方向：想研究什么、为什么\n6. 结尾：表达期望\n\n注意：突出重点，不要流水账，控制时间。针对不同学校可以调整侧重。',tags:'必考'},
+    {title:'请介绍一下你参与的科研项目或竞赛经历。',cat:'个人问题',sub:'科研经历',ans:'建议用STAR法则回答：\nS (Situation)：项目背景和目标\nT (Task)：你负责的具体任务\nA (Action)：你采取的行动和方法\nR (Result)：取得的成果和收获\n\n要点：突出你的贡献、技术难点、解决问题的能力。\'水\'项目也要说得有深度，重点在思考和成长。',tags:'核心'},
+    {title:'你在项目中遇到的最大困难是什么？如何解决的？',cat:'个人问题',sub:'科研经历',ans:'这是一个考察解决问题能力的问题。回答框架：\n1. 描述具体的困难（技术难题/时间紧张/团队协作等）\n2. 分析原因\n3. 采取的解决措施（查阅文献/请教老师/调整方案等）\n4. 最终结果\n5. 收获和反思\n\n注意：不要只说\'查资料\'这种泛泛的答案，要具体到技术细节。',tags:'高频'},
+    {title:'你为什么选择我们学校/研究所？',cat:'个人问题',sub:'择校动机',ans:'建议从以下角度准备：\n1. 学校/研究所的学术实力和学科优势\n2. 具体的研究方向与你的兴趣契合\n3. 心仪的导师及其研究方向（提前做功课！）\n4. 地域因素、学术氛围等\n\n注意：不要只夸学校名气，要结合自己的研究兴趣，表现出你真的了解这个学校。提前去官网看研究方向和相关论文。',tags:'必考,高频'},
+    {title:'你研究生阶段有什么规划？未来想读博还是工作？',cat:'个人问题',sub:'未来规划',ans:'回答框架：\n1. 研一阶段：打好理论基础，跟进实验室研究方向，完成课程\n2. 研二阶段：深入课题研究，争取发表论文/专利\n3. 研三阶段：完成毕业论文，确定未来方向\n\n关于读博/工作：\n- 如果确定读博：可以说希望在硕士阶段打好基础，未来攻读博士\n- 如果不确定：可以说先完成硕士，根据科研情况再决定\n- 注意：不要说得太绝对，给自己留余地',tags:'高频'},
+    {title:'你对哪个研究方向最感兴趣？为什么？',cat:'个人问题',sub:'择校动机',ans:'回答建议：\n1. 明确说出具体方向（如MIMO、OFDM、信道编码、光通信等）\n2. 结合课程学习或项目经历说明兴趣来源\n3. 展示你对这个方向的了解（前沿技术、发展现状）\n4. 表达希望深入研究的愿望\n\n注意：一定要提前了解面试学校/老师的研究方向，最好能结合他们的工作进行回答。',tags:'重点'},
+    // ===== 英语问题 =====
+    {title:'Please introduce yourself briefly in English. (英语自我介绍)',cat:'英语问题',sub:'英语自我介绍',ans:'Good morning/afternoon, professors. My name is [Your Name]. I am a third-year undergraduate student majoring in Communication Engineering at [Your University].\n\nOver the past three years, I have maintained a GPA of [X/X], ranking top [X%] in my class. My core coursework includes Communication Principles, Signals and Systems, Digital Signal Processing, and Wireless Communications.\n\nI have participated in [project name], where I was responsible for [brief description]. This experience greatly improved my problem-solving skills and deepened my understanding of [specific area].\n\nI am particularly interested in [research direction], and I hope to pursue further study in this field at your esteemed university.\n\nThank you!',tags:'必考'},
+    {title:'Please explain OFDM in English.',cat:'英语问题',sub:'专业英语',ans:'OFDM stands for Orthogonal Frequency Division Multiplexing. It is a modulation technique that divides a high-data-rate stream into multiple lower-rate streams transmitted over orthogonal subcarriers.\n\nThe key idea is that the subcarriers are orthogonal to each other, meaning the peak of one subcarrier coincides with the nulls of the others. This allows the subcarriers to overlap in the frequency domain without causing inter-carrier interference (ICI), leading to high spectral efficiency.\n\nOFDM has several advantages: it is robust against multipath fading due to the use of a cyclic prefix (CP), it can be efficiently implemented using IFFT/FFT, and it allows flexible resource allocation.\n\nHowever, it also has some disadvantages, such as high peak-to-average power ratio (PAPR) and sensitivity to frequency offset.',tags:'重点'},
+    {title:'Why do you want to pursue a master\'s degree?',cat:'英语问题',sub:'日常问答',ans:'There are three main reasons:\n\nFirst, during my undergraduate studies, I realized that the knowledge I have acquired is just the tip of the iceberg. I want to deepen my understanding of communication engineering, especially in [specific area].\n\nSecond, I have developed a strong interest in research through my project experience. I enjoy the process of identifying problems, exploring solutions, and achieving results.\n\nThird, a master\'s degree will provide me with more systematic training in scientific research methods, which will be valuable for my future career.\n\nI believe that graduate study at your university will help me achieve these goals.',tags:'高频'},
+    {title:'What are your greatest strengths and weaknesses?',cat:'英语问题',sub:'日常问答',ans:'Strengths:\n1. I am a quick learner and can grasp new concepts efficiently.\n2. I have strong problem-solving skills, especially in technical areas.\n3. I am persistent and don\'t give up easily when facing challenges.\n4. I work well both independently and in a team.\n\nWeaknesses:\n1. Sometimes I pay too much attention to details, which may affect my overall efficiency.\n2. I tend to be overly critical of my own work, always striving for perfection.\n3. Public speaking is something I am still working on improving.\n\nNote: Be honest about weaknesses, but show that you are working on improving them.',tags:'经典'},
+    // ===== 综合面试 =====
+    {title:'谈谈你对当前中美科技竞争的看法，尤其是在芯片和通信领域。',cat:'综合面试',sub:'时事热点',ans:'可以从以下角度展开：\n1. 背景：中美科技竞争加剧，美国对华为、中芯国际等实施制裁\n2. 芯片领域：EDA软件、光刻机（ASML）、芯片设计（ARM架构授权）等卡脖子问题\n3. 通信领域：华为5G领先但被围堵，6G研发竞争\n4. 我们的应对：国产替代（EDA、光刻机）、RISC-V架构、人才自主培养\n5. 作为通信学生的思考：核心技术必须自主可控，基础研究的重要性\n\n注意：表现出对国家科技发展的关注和思考，态度积极，不要过于悲观或激进。',tags:'热点'},
+    {title:'你最大的优点和缺点分别是什么？',cat:'综合面试',sub:'综合素质',ans:'优点：\n1. 学习能力强，能快速掌握新知识和新技能\n2. 做事认真负责，有较强的执行力\n3. 善于思考和总结，有良好的逻辑分析能力\n4. 有团队合作精神\n\n缺点：\n1. 有时过于追求完美，导致效率不高（已经在学习时间管理）\n2. 在公众演讲方面还需要锻炼（主动参加了一些汇报）\n3. 有时候会钻牛角尖（正在培养大局观）\n\n关键：缺点要真实且有改进措施，不要编造或说无关痛痒的话。',tags:'经典'},
+    {title:'如果你的想法和导师不一致，你会怎么处理？',cat:'综合面试',sub:'压力面试',ans:'回答框架：\n1. 首先认真听取导师的意见，理解导师的出发点\n2. 对自己的想法进行反思和验证（查阅文献、做实验验证等）\n3. 以尊重的态度与导师进行学术探讨，摆事实讲道理\n4. 如果导师的意见更有道理，虚心接受并调整方向\n5. 如果确实对自己的想法有信心，可以用数据和文献说服导师\n6. 最终服从导师的安排，因为导师有更丰富的经验\n\n核心：表现出尊重导师、学术严谨、能理性沟通的态度。',tags:'重点'},
+    {title:'你觉得相比其他保研的同学，你的优势在哪里？有哪些不足？',cat:'综合面试',sub:'压力面试',ans:'优势（根据自身情况选择）：\n1. 专业基础扎实（学分绩/排名）\n2. 有科研经历/项目经验\n3. 动手能力强（编程/实验）\n4. 学习能力强，能快速适应新环境\n5. 参加过的竞赛和获奖\n\n不足（诚实但不自曝短板）：\n1. 科研深度还不够，希望研究生阶段系统训练\n2. 某些细分方向的知识还不够深入\n3. 英语能力还有提升空间\n\n注意：优势要有具体支撑，不足要说正在改进。',tags:'经典'}
+  ];
+  let added = 0;
+  for (const s of samples) {
+    const existing = questions.find(q => q.title === s.title && q.category === s.cat && q.subcategory === s.sub);
+    if (!existing) {
+      addQuestion({
+        title: s.title,
+        category: s.cat,
+        subcategory: s.sub,
+        answer: s.ans,
+        status: '未掌握',
+        tags: (s.tags || '').split(',').map(t => t.trim()).filter(Boolean)
+      });
+      added++;
+    }
+  }
+  if (!silent) alert('已加载 ' + added + ' 个示例问题！');
+  renderAll();
+}
+
+// ====== Export / Import ======
+function exportData() {
+  const blob = new Blob([JSON.stringify(questions, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '保研面试问题_' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      if (!Array.isArray(imported)) { alert('无效的数据格式'); return; }
+      const mode = confirm('点击"确定"替换全部数据（当前数据将丢失）\n点击"取消"合并到现有数据（按题目去重）');
+      if (mode) {
+        // Replace
+        questions = imported;
+      } else {
+        // Merge (deduplicate by title)
+        const existingTitles = new Set(questions.map(q => q.title));
+        for (const q of imported) {
+          if (!existingTitles.has(q.title)) {
+            questions.push({ ...q, id: q.id || getNextId() });
+            existingTitles.add(q.title);
+          }
+        }
+      }
+      saveQuestions();
+      renderAll();
+      alert('导入成功！共 ' + questions.length + ' 个问题');
+    } catch {
+      alert('文件解析失败，请确认是有效的 JSON 文件');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ====== State ======
+let questions = [];
+let editId = null;
+let filters = { category: '全部', subcategory: '全部', status: '全部', search: '' };
+let interviewQuestions = [];
+let interviewIndex = 0;
+let currentInterviewQ = null;
+
+// ====== Init ======
+document.addEventListener('DOMContentLoaded', () => {
+  loadQuestions();
+  if (questions.length === 0) {
+    seedSampleData(true);
+  }
+  initCategorySelects();
+  renderAll();
+});
+// ====== Data ======
+function loadQuestions() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    questions = raw ? JSON.parse(raw) : [];
+  } catch { questions = []; }
+}
+function saveQuestions() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(questions));
+}
+function getNextId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+}
+function addQuestion(data) {
+  const q = {
+    id: getNextId(),
+    title: data.title,
+    category: data.category,
+    subcategory: data.subcategory,
+    answer: data.answer || '',
+    status: data.status || '未掌握',
+    tags: data.tags || [],
+    reviewCount: 0,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  questions.push(q);
+  saveQuestions();
+  renderAll();
+  return q;
+}
+function updateQuestion(id, data) {
+  const idx = questions.findIndex(q => q.id === id);
+  if (idx === -1) return null;
+  questions[idx] = { ...questions[idx], ...data, updatedAt: new Date().toISOString() };
+  saveQuestions();
+  renderAll();
+  return questions[idx];
+}
+function deleteQuestion(id) {
+  if (!confirm('确定删除这个问题吗？')) return;
+  questions = questions.filter(q => q.id !== id);
+  saveQuestions();
+  renderAll();
+}
+function getCategoryCount(cat, subcat) {
+  return questions.filter(q => {
+    if (cat !== '全部' && q.category !== cat) return false;
+    if (subcat && subcat !== '全部' && q.subcategory !== subcat) return false;
+    return true;
+  }).length;
+}
+function getStatusCount(status) {
+  return questions.filter(q => q.status === status).length;
+}
+
+// ====== Category Selects ======
+function initCategorySelects() {
+  const sel = document.getElementById('qCategory');
+  sel.innerHTML = Object.keys(CATEGORIES).map(c => `<option value="${c}">${c}</option>`).join('');
+  updateSubcategories();
+  // Interview category
+  const intSel = document.getElementById('interviewCategory');
+  intSel.innerHTML = '<option value="全部">全部类别</option>' +
+    Object.keys(CATEGORIES).map(c => `<option value="${c}">${c}</option>`).join('');
+}
+function updateSubcategories() {
+  const cat = document.getElementById('qCategory').value;
+  const subs = CATEGORIES[cat] || [];
+  // Also include existing subcategories in use for this category
+  const usedSubs = [...new Set(questions.filter(q => q.category === cat).map(q => q.subcategory).filter(Boolean))];
+  const allSubs = [...new Set([...subs, ...usedSubs])];
+  const datalist = document.getElementById('subcategoryList');
+  datalist.innerHTML = allSubs.map(s => `<option value="${s}">`).join('');
+  const input = document.getElementById('qSubcategory');
+  // If current value is still in the list, keep it
+  if (!input.value || !allSubs.includes(input.value)) {
+    input.value = '';
+    input.placeholder = '选择或输入自定义科目...';
+  }
+}
+
+// ====== Filters ======
+function filterByCategory(cat, subcat) {
+  filters.category = cat;
+  filters.subcategory = subcat || '全部';
+  // update UI
+  document.querySelectorAll('.category-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.category === cat);
+  });
+  document.querySelectorAll('.subcategory-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.subcategory === (subcat || '全部'));
+  });
+  document.querySelectorAll('.subcategory-list').forEach(el => el.classList.remove('open'));
+  if (subcat) {
+    const parent = document.querySelector(`.subcategory-item[data-subcategory="${subcat}"]`);
+    if (parent) parent.closest('.subcategory-list')?.classList.add('open');
+  }
+  document.querySelectorAll('.status-item').forEach(el => el.classList.remove('active'));
+  document.querySelector('.status-item[data-status="全部"]')?.classList.add('active');
+  filters.status = '全部';
+  renderQuestions();
+  updateViewTitle();
+}
+function filterBySubcategory(cat, subcat) {
+  filterByCategory(cat, subcat);
+}
+function filterByStatus(status) {
+  filters.status = status;
+  document.querySelectorAll('.status-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.status === status);
+  });
+  renderQuestions();
+}
+function handleSearch() {
+  filters.search = document.getElementById('searchInput').value.trim();
+  renderQuestions();
+}
+function getFilteredQuestions() {
+  let list = [...questions];
+  if (filters.category !== '全部') {
+    list = list.filter(q => q.category === filters.category);
+  }
+  if (filters.subcategory !== '全部') {
+    list = list.filter(q => q.subcategory === filters.subcategory);
+  }
+  if (filters.status !== '全部') {
+    list = list.filter(q => q.status === filters.status);
+  }
+  if (filters.search) {
+    const s = filters.search.toLowerCase();
+    list = list.filter(q =>
+      q.title.toLowerCase().includes(s) ||
+      q.answer.toLowerCase().includes(s) ||
+      q.tags.some(t => t.toLowerCase().includes(s))
+    );
+  }
+  // Sort
+  const sort = document.getElementById('sortSelect').value;
+  list.sort((a, b) => {
+    switch (sort) {
+      case 'newest': return new Date(b.createdAt) - new Date(a.createdAt);
+      case 'oldest': return new Date(a.createdAt) - new Date(b.createdAt);
+      case 'updated': return new Date(b.updatedAt) - new Date(a.updatedAt);
+      case 'reviews': return b.reviewCount - a.reviewCount;
+      default: return 0;
+    }
+  });
+  return list;
+}
+function updateViewTitle() {
+  const el = document.getElementById('currentViewTitle');
+  const sub = document.getElementById('currentViewSubtitle');
+  if (filters.category === '全部') {
+    el.textContent = '全部问题';
+    sub.textContent = `${questions.length} 个问题 · 已掌握 ${getStatusCount('已熟悉')} 个`;
+  } else {
+    let name = filters.category;
+    if (filters.subcategory !== '全部') name += ' / ' + filters.subcategory;
+    el.textContent = name;
+    const cnt = getCategoryCount(filters.category, filters.subcategory);
+    sub.textContent = `${cnt} 个问题`;
+  }
+}
+
+// ====== Render ======
+function renderAll() {
+  renderCategoryTree();
+  renderQuestions();
+  renderStats();
+  updateViewTitle();
+  updateHeaderStats();
+}
+function renderCategoryTree() {
+  const container = document.getElementById('categoryTree');
+  let html = '';
+  for (const [cat, subs] of Object.entries(CATEGORIES)) {
+    const cnt = getCategoryCount(cat);
+    html += `<div class="category-item" data-category="${cat}" onclick="toggleSubcategory(this)">
+      <span>${cat}</span>
+      <span class="count">${cnt}</span>
+    </div>`;
+    html += `<div class="subcategory-list" data-parent="${cat}">`;
+    html += `<div class="subcategory-item ${filters.category === cat && filters.subcategory === '全部' ? 'active' : ''}" 
+              data-subcategory="全部" onclick="event.stopPropagation();filterByCategory('${cat}')">全部 (${cnt})</div>`;
+    // Custom subcategories from actual data (in addition to predefined)
+    const usedSubs = [...new Set(questions.filter(q => q.category === cat).map(q => q.subcategory).filter(Boolean))];
+    const allSubs = [...new Set([...subs, ...usedSubs])];
+    for (const sub of allSubs) {
+      const scnt = getCategoryCount(cat, sub);
+      const isCustom = !subs.includes(sub);
+      html += `<div class="subcategory-item ${filters.category === cat && filters.subcategory === sub ? 'active' : ''}" 
+                data-subcategory="${sub}" onclick="event.stopPropagation();filterByCategory('${cat}','${sub}')">${sub} (${scnt})${isCustom ? ' <span style="font-size:10px;color:var(--text-muted)">✚</span>' : ''}</div>`;
+    }
+    html += `</div>`;
+  }
+  container.innerHTML = html;
+  // Open active subcategory
+  if (filters.subcategory !== '全部') {
+    const active = container.querySelector('.subcategory-item.active');
+    if (active) active.closest('.subcategory-list')?.classList.add('open');
+  }
+  // Update all-category count
+  document.getElementById('catCount-全部').textContent = questions.length;
+}
+function toggleSubcategory(el) {
+  const list = el.nextElementSibling;
+  if (list && list.classList.contains('subcategory-list')) {
+    list.classList.toggle('open');
+  }
+  // Prevent the click on category-item from filtering
+  // Actually let's make clicking the category filter by that category
+  const cat = el.dataset.category;
+  filterByCategory(cat);
+}
+function renderStats() {
+  const total = questions.length;
+  const mastered = getStatusCount('已熟悉');
+  const review = getStatusCount('需复习');
+  const none = getStatusCount('未掌握');
+  const totalReviews = questions.reduce((sum, q) => sum + q.reviewCount, 0);
+  document.getElementById('statsDashboard').innerHTML = `
+    <div class="stat-card primary"><div class="num">${total}</div><div class="label">总问题</div></div>
+    <div class="stat-card success"><div class="num">${mastered}</div><div class="label">已熟悉</div></div>
+    <div class="stat-card warning"><div class="num">${review}</div><div class="label">需复习</div></div>
+    <div class="stat-card danger"><div class="num">${none}</div><div class="label">未掌握</div></div>
+    <div class="stat-card"><div class="num">${totalReviews}</div><div class="label">总复习次数</div></div>
+  `;
+}
+function updateHeaderStats() {
+  document.getElementById('totalCount').textContent = questions.length;
+  document.getElementById('masteredCount').textContent = getStatusCount('已熟悉');
+  document.getElementById('reviewCount').textContent = getStatusCount('需复习');
+}
+function renderQuestions() {
+  const list = getFilteredQuestions();
+  const grid = document.getElementById('questionGrid');
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">📭</div>
+        <h3>还没有问题</h3>
+        <p style="color:var(--text-muted);font-size:14px;">点击左侧「添加问题」开始记录吧</p>
+      </div>`;
+    return;
+  }
+  // Group by subcategory when viewing 专业知识 at top level
+  const shouldGroup = filters.category === '专业知识' && filters.subcategory === '全部';
+  let html = '';
+  if (shouldGroup) {
+    const grouped = {};
+    for (const q of list) {
+      const key = q.subcategory || '其他';
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(q);
+    }
+    const subOrder = CATEGORIES['专业知识'] || [];
+    for (const sub of subOrder) {
+      const items = grouped[sub];
+      if (!items || items.length === 0) continue;
+      const subIcon = sub === '通信原理' ? '📡' : sub === '信号与系统' ? '📊' : sub === '数字信号处理' ? '🔢' :
+                      sub === '移动通信/无线通信' ? '📱' : sub === '光纤通信' ? '💡' : sub === '计算机网络' ? '🌐' :
+                      sub === '电磁场与电磁波' ? '⚡' : sub === '信息论与编码' ? '🔐' : sub === '通信电子线路' ? '🔌' :
+                      sub === '嵌入式/单片机' ? '💻' : sub === '编程与算法' ? '⌨️' : '📖';
+      html += `<div class="subcategory-section">
+        <div class="subcategory-header" onclick="toggleSubcategorySection(this)">
+          <span class="subcategory-header-title">${subIcon} ${sub}</span>
+          <span class="subcategory-header-count">${items.length} 题</span>
+        </div>
+        <div class="subcategory-body">`;
+      for (const q of items) {
+        html += renderQuestionCard(q);
+      }
+      html += `</div></div>`;
+    }
+    // leftover subcategories not in subOrder
+    for (const [sub, items] of Object.entries(grouped)) {
+      if (subOrder.includes(sub)) continue;
+      html += `<div class="subcategory-section">
+        <div class="subcategory-header" onclick="toggleSubcategorySection(this)">
+          <span class="subcategory-header-title">📖 ${sub}</span>
+          <span class="subcategory-header-count">${items.length} 题</span>
+        </div>
+        <div class="subcategory-body">`;
+      for (const q of items) {
+        html += renderQuestionCard(q);
+      }
+      html += `</div></div>`;
+    }
+  } else {
+    html = list.map(q => renderQuestionCard(q)).join('');
+  }
+  grid.innerHTML = html;
+}
+function renderQuestionCard(q) {
+  const statusClass = q.status === '已熟悉' ? 'mastered' : q.status === '需复习' ? 'review' : 'none';
+  const statusIcon = q.status === '已熟悉' ? '✅' : q.status === '需复习' ? '🔄' : '❌';
+  return `
+    <div class="question-card" onclick="toggleAnswer(this, event)">
+      <div class="question-card-header">
+        <div class="question-title">${escapeHtml(q.title)}</div>
+        <div class="question-badges">
+          <span class="badge badge-category">${q.category}</span>
+          <span class="badge badge-subcategory">${q.subcategory}</span>
+          <span class="badge badge-status ${statusClass}">${statusIcon} ${q.status}</span>
+        </div>
+      </div>
+      <div class="question-meta">
+        <span>🔄 复习 ${q.reviewCount} 次</span>
+        <span>📅 ${formatDate(q.updatedAt)}</span>
+        ${q.tags && q.tags.length ? `<span>🏷️ ${q.tags.join(', ')}</span>` : ''}
+      </div>
+      <div class="question-answer">${escapeHtml(q.answer || '(暂无答案)')}</div>
+      <div class="question-actions" onclick="event.stopPropagation()">
+        <button class="action-btn" onclick="quickStatus('${q.id}','已熟悉')" title="标记已熟悉">✅</button>
+        <button class="action-btn" onclick="quickStatus('${q.id}','需复习')" title="标记需复习">🔄</button>
+        <button class="action-btn" onclick="openEditModal('${q.id}')" title="编辑">✏️</button>
+        <button class="action-btn danger" onclick="deleteQuestion('${q.id}')" title="删除">🗑️</button>
+      </div>
+    </div>`;
+}
+function toggleSubcategorySection(header) {
+  header.parentElement.classList.toggle('expanded');
+}
+function toggleAnswer(card, evt) {
+  // Don't toggle if user is selecting text or clicking inside answer/actions area
+  if (evt) {
+    if (evt.target.closest('.question-answer') || evt.target.closest('.question-actions')) return;
+  }
+  const sel = window.getSelection();
+  if (sel && sel.toString().length > 0) { sel.removeAllRanges(); return; }
+  card.classList.toggle('open');
+}
+function quickStatus(id, status) {
+  updateQuestion(id, { status });
+  renderQuestions();
+}
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+// ====== Modal ======
+function openAddModal() {
+  editId = null;
+  document.getElementById('modalTitle').textContent = '添加问题';
+  document.getElementById('qTitle').value = '';
+  document.getElementById('qAnswer').value = '';
+  document.getElementById('qStatus').value = '未掌握';
+  document.getElementById('qTags').value = '';
+  document.getElementById('questionModal').classList.add('open');
+}
+function openEditModal(id) {
+  const q = questions.find(x => x.id === id);
+  if (!q) return;
+  editId = id;
+  document.getElementById('modalTitle').textContent = '编辑问题';
+  document.getElementById('qTitle').value = q.title;
+  document.getElementById('qCategory').value = q.category;
+  updateSubcategories();
+  document.getElementById('qSubcategory').value = q.subcategory;
+  document.getElementById('qAnswer').value = q.answer;
+  document.getElementById('qStatus').value = q.status;
+  document.getElementById('qTags').value = (q.tags || []).join(', ');
+  document.getElementById('questionModal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('questionModal').classList.remove('open');
+  editId = null;
+}
+function saveQuestion() {
+  const title = document.getElementById('qTitle').value.trim();
+  if (!title) { alert('请输入问题内容'); return; }
+  const category = document.getElementById('qCategory').value;
+  const subcategory = document.getElementById('qSubcategory').value.trim();
+  if (!subcategory) { alert('请输入子分类'); return; }
+  const answer = document.getElementById('qAnswer').value.trim();
+  const status = document.getElementById('qStatus').value;
+  const tagsRaw = document.getElementById('qTags').value.trim();
+  const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+  const data = { title, category, subcategory, answer, status, tags };
+  if (editId) {
+    updateQuestion(editId, data);
+  } else {
+    addQuestion(data);
+  }
+  closeModal();
+}
+
+// ====== Interview Mode ======
+function openInterviewPanel() {
+  document.getElementById('interviewPanel').classList.add('open');
+  initInterviewQuestions();
+}
+function closeInterviewPanel() {
+  document.getElementById('interviewPanel').classList.remove('open');
+}
+function initInterviewQuestions() {
+  const cat = document.getElementById('interviewCategory').value;
+  interviewQuestions = cat === '全部'
+    ? [...questions]
+    : questions.filter(q => q.category === cat);
+  interviewQuestions = interviewQuestions.filter(q => q.title.trim());
+  interviewIndex = 0;
+  currentInterviewQ = null;
+  document.getElementById('interviewContent').innerHTML = `
+    <div style="text-align:center;padding:20px 0;color:var(--text-muted);">
+      <p>共 ${interviewQuestions.length} 道题待抽</p>
+      <button class="sidebar-btn btn-primary" style="display:inline-flex;width:auto;margin-top:12px;" onclick="nextInterviewQuestion()">开始抽题</button>
+    </div>`;
+}
+function nextInterviewQuestion() {
+  if (interviewQuestions.length === 0) {
+    alert('当前分类下没有问题，请先添加问题！');
+    return;
+  }
+  interviewIndex = (interviewIndex + 1) % interviewQuestions.length;
+  currentInterviewQ = interviewQuestions[interviewIndex];
+  renderInterviewQuestion();
+}
+function renderInterviewQuestion() {
+  if (!currentInterviewQ) { nextInterviewQuestion(); return; }
+  const q = currentInterviewQ;
+  document.getElementById('interviewContent').innerHTML = `
+    <div class="interview-progress">第 ${interviewIndex + 1} / ${interviewQuestions.length} 题</div>
+    <div class="interview-question">
+      <div class="label">📌 面试问题</div>
+      <div class="text">${escapeHtml(q.title)}</div>
+    </div>
+    <div class="interview-answer" id="interviewAnswer">
+      <div class="label">💡 参考答案</div>
+      <div class="content">${escapeHtml(q.answer || '(暂无答案)')}</div>
+    </div>
+    <div class="interview-actions">
+      <button class="btn-reveal" onclick="revealInterviewAnswer()">👁️ 显示答案</button>
+      <button class="btn-mastered" onclick="markInterviewStatus('已熟悉')">✅ 已熟悉</button>
+      <button class="btn-review" onclick="markInterviewStatus('需复习')">🔄 需要复习</button>
+      <button class="btn-next" onclick="nextInterviewQuestion()">下一题 →</button>
+    </div>`;
+}
+function revealInterviewAnswer() {
+  document.getElementById('interviewAnswer')?.classList.add('open');
+}
+function markInterviewStatus(status) {
+  if (!currentInterviewQ) return;
+  updateQuestion(currentInterviewQ.id, {
+    status,
+    reviewCount: currentInterviewQ.reviewCount + 1
+  });
+  // Update local object too
+  currentInterviewQ.status = status;
+  currentInterviewQ.reviewCount += 1;
+  renderAll();
+  // Auto advance after a short delay
+  setTimeout(nextInterviewQuestion, 600);
+}
+
+// ====== Keyboard shortcuts ======
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeInterviewPanel();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    if (document.getElementById('questionModal').classList.contains('open')) {
+      saveQuestion();
+    }
+  }
+});
+// Close modal on overlay click
+document.getElementById('questionModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.getElementById('interviewPanel').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeInterviewPanel();
+});
+</script>
+</body>
+</html>
